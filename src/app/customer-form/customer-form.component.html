@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="form-card">
+    <h2>{{ isEditMode ? 'Edit Customer' : 'Add New Customer' }}</h2>
+
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #customerForm="ngForm">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          [(ngModel)]="customer.username"
+          required
+          #username="ngModel"
+        >
+        <div *ngIf="username.invalid && username.touched" class="field-error">
+          Username is required
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="!isEditMode">
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="customer.password"
+          required
+          #password="ngModel"
+        >
+        <div *ngIf="password.invalid && password.touched" class="field-error">
+          Password is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="customerName">Customer Name:</label>
+        <input
+          type="text"
+          id="customerName"
+          name="customerName"
+          [(ngModel)]="customer.customerName"
+          required
+          #customerName="ngModel"
+        >
+        <div *ngIf="customerName.invalid && customerName.touched" class="field-error">
+          Customer name is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dateOfBirth">Date of Birth:</label>
+        <input
+          type="date"
+          id="dateOfBirth"
+          name="dateOfBirth"
+          [(ngModel)]="customer.dateOfBirth"
+          required
+          #dateOfBirth="ngModel"
+        >
+        <div *ngIf="dateOfBirth.invalid && dateOfBirth.touched" class="field-error">
+          Date of birth is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select
+          id="gender"
+          name="gender"
+          [(ngModel)]="customer.gender"
+          required
+          #gender="ngModel"
+        >
+          <option value="">Select gender</option>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+        </select>
+        <div *ngIf="gender.invalid && gender.touched" class="field-error">
+          Gender is required
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" [disabled]="customerForm.invalid || isLoading">
+          {{ isLoading ? 'Saving...' : (isEditMode ? 'Update Customer' : 'Create Customer') }}
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="goBack()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="detail-card">
+    <div class="header">
+      <h2>Customer Details</h2>
+      <div class="actions">
+        <button
+          class="btn btn-warning"
+          [routerLink]="['/customers', customer?.id, 'edit']"
+          *ngIf="customer"
+        >
+          Edit
+        </button>
+        <button class="btn btn-secondary" (click)="goBack()">
+          Back to List
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="isLoading" class="loading">
+      Loading customer details...
+    </div>
+
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="customer && !isLoading" class="customer-info">
+      <div class="info-row">
+        <span class="label">ID:</span>
+        <span class="value">{{ customer.id }}</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Username:</span>
+        <span class="value">{{ customer.username }}</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Customer Name:</span>
+        <span class="value">{{ customer.customerName }}</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Date of Birth:</span>
+        <span class="value">{{ customer.dateOfBirth }}</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Gender:</span>
+        <span class="value">{{ customer.gender === 'M' ? 'Male' : 'Female' }}</span>
+      </div>
+    </div>
+  </div>
+</div>

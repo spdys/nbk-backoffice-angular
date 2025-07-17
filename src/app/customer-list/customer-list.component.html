@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="header">
+    <h1>Customer Management</h1>
+    <div class="header-actions">
+      <button class="btn btn-primary" [routerLink]="['/customers/new']">
+        Add New Customer
+      </button>
+      <button class="btn btn-secondary" (click)="logout()">
+        Logout
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">
+    Loading customers...
+  </div>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!isLoading && !errorMessage" class="customer-table">
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Date of Birth</th>
+        <th>Gender</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let customer of customers">
+        <td>{{ customer.id }}</td>
+        <td>{{ customer.username }}</td>
+        <td>{{ customer.customerName }}</td>
+        <td>{{ customer.dateOfBirth }}</td>
+        <td>{{ customer.gender }}</td>
+        <td class="actions">
+          <button
+            class="btn btn-sm btn-info"
+            [routerLink]="['/customers', customer.id]"
+          >
+            View
+          </button>
+          <button
+            class="btn btn-sm btn-warning"
+            [routerLink]="['/customers', customer.id, 'edit']"
+          >
+            Edit
+          </button>
+          <button
+            class="btn btn-sm btn-danger"
+            (click)="deleteCustomer(customer.id!)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="customers.length === 0" class="empty-state">
+      <p>No customers found. <a [routerLink]="['/customers/new']">Add the first customer</a></p>
+    </div>
+  </div>
+</div>
