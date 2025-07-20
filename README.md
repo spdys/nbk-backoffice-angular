@@ -1,59 +1,64 @@
-# BackofficeApp
+## nbk-backoffice
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+An Angular frontend application for the NBK Backoffice customer management system.
 
-## Development server
+### Overview
 
-To start a local development server, run:
+This project provides a modern, responsive admin interface for managing customers with secure JWT authentication, full CRUD operations, and seamless integration with the Spring Boot backend.
 
-```bash
-ng serve
-```
+### Features
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- JWT-based authentication with automatic token management
+- Protected routes with auth guards
+- Complete customer CRUD operations (Create, Read, Update, Delete)
+- Form validation and error handling
+- Responsive design for desktop and mobile
+- Loading states and user feedback
+- Secure logout functionality
 
-## Code scaffolding
+### Tech Stack
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Angular 19.2.15
+- TypeScript
+- RxJS for reactive programming
+- Angular Router for navigation
+- Angular Forms for form handling
+- Modern CSS with flexbox/grid
 
-```bash
-ng generate component component-name
-```
+### Prerequisites
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Node.js 18+ and npm
+- Angular CLI (`npm install -g @angular/cli`)
+- NBK Backoffice backend running on `http://localhost:8080`
 
-```bash
-ng generate --help
-```
+### Usage
 
-## Building
+#### Authentication
+- **Login URL:** `/login`
+- **Default credentials:** `admin` / `admin123`
+- Tokens are automatically stored and included in API requests
 
-To build the project run:
+#### Customer Management
+- **List customers:** View all customers in a responsive table
+- **Add customer:** Complete form with validation for new customers
+- **View details:** Detailed customer information display
+- **Edit customer:** Update customer information (password not required)
+- **Delete customer:** Remove customers with confirmation dialog
 
-```bash
-ng build
-```
+### API Integration
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+The frontend integrates with the following backend endpoints:
 
-## Running unit tests
+- `POST /auth/login` - Admin authentication
+- `GET /customers` - Retrieve all customers
+- `GET /customers/{id}` - Retrieve one customer
+- `POST /customers` - Create new customer
+- `PUT /customers/{id}` - Update customer
+- `DELETE /customers/{id}` - Delete customer
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Security Features
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Route protection with auth guards
+- Automatic JWT token handling
+- Secure logout with token cleanup
+- Protected API endpoints with bearer authentication
